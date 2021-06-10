@@ -6,7 +6,7 @@ import { BaseModel } from '../base';
 import { Knex } from 'knex';
 
 export enum Proc {
-  AccountRecord = 'accountRecord_7',
+  AccountRecord = 'accountRecord_8',
   AccountResetToken = 'accountResetToken_1',
   AccountDevices = 'accountDevices_16',
   CreateAccount = 'createAccount_9',
