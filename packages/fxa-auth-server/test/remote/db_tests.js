@@ -1238,29 +1238,6 @@ describe('remote db', function () {
       });
   });
 
-  it('db.securityEvent', () => {
-    return db
-      .securityEvent({
-        ipAddr: '127.0.0.1',
-        name: 'account.create',
-        uid: account.uid,
-      })
-      .then((resp) => {
-        assert.equal(typeof resp, 'object');
-        assert.equal(Object.keys(resp).length, 0);
-
-        return db.securityEvent({
-          ipAddr: '127.0.0.1',
-          name: 'account.login',
-          uid: account.uid,
-        });
-      })
-      .then((resp) => {
-        assert.equal(typeof resp, 'object');
-        assert.equal(Object.keys(resp).length, 0);
-      });
-  });
-
   it('db.securityEvents', () => {
     return db
       .securityEvent({
@@ -1308,8 +1285,7 @@ describe('remote db', function () {
           uid: account.uid,
         });
       })
-      .then((events) => {
-        assert.deepEqual(events, {});
+      .then(() => {
         return db.securityEventsByUid({
           uid: account.uid,
         });
@@ -1577,8 +1553,7 @@ describe('remote db', function () {
     it('can set primary email address', () => {
       return db
         .setPrimaryEmail(account.uid, secondEmail)
-        .then((res) => {
-          assert.ok(res, 'ok response');
+        .then(() => {
           return db.accountRecord(secondEmail);
         })
         .then((account) => {
